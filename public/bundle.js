@@ -19193,7 +19193,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _TodoItems = __webpack_require__(39);
+var _reactFlipMove = __webpack_require__(39);
+
+var _reactFlipMove2 = _interopRequireDefault(_reactFlipMove);
+
+var _TodoItems = __webpack_require__(40);
 
 var _TodoItems2 = _interopRequireDefault(_TodoItems);
 
@@ -19220,13 +19224,14 @@ var TodoList = function (_Component) {
     };
 
     _this.addItem = _this.addItem.bind(_this);
+    _this.createTasks = _this.createTasks.bind(_this);
     _this.deleteItem = _this.deleteItem.bind(_this);
     return _this;
   }
 
   _createClass(TodoList, [{
     key: "addItem",
-    value: function addItem(e) {
+    value: function addItem(event) {
       if (this._inputElement.value !== "") {
         var newItem = {
           text: this._inputElement.value,
@@ -19244,7 +19249,21 @@ var TodoList = function (_Component) {
 
       console.log(this.state.items);
 
-      e.preventDefault();
+      event.preventDefault();
+    }
+  }, {
+    key: "createTasks",
+    value: function createTasks(item) {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        "li",
+        { onClick: function onClick() {
+            return _this2.deleteItem(item.key);
+          },
+          key: item.key },
+        item.text
+      );
     }
   }, {
     key: "deleteItem",
@@ -19257,10 +19276,19 @@ var TodoList = function (_Component) {
         items: filteredItems
       });
     }
+
+    /*delete(key) {
+      this.props.delete(key);
+    }*/
+
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
+
+      {/*var todoEntries = this.props.entries;*/}
+      var todoEntries = this.state.items;
+      var listItems = todoEntries.map(this.createTasks);
 
       return _react2.default.createElement(
         "div",
@@ -19271,8 +19299,8 @@ var TodoList = function (_Component) {
           _react2.default.createElement(
             "form",
             { onSubmit: this.addItem },
-            _react2.default.createElement("input", { ref: function ref(a) {
-                return _this2._inputElement = a;
+            _react2.default.createElement("input", { ref: function ref(el) {
+                return _this3._inputElement = el;
               }, placeholder: "enter task" }),
             _react2.default.createElement(
               "button",
@@ -19281,8 +19309,15 @@ var TodoList = function (_Component) {
             )
           )
         ),
-        _react2.default.createElement(_TodoItems2.default, { entries: this.state.items,
-          "delete": this.deleteItem })
+        _react2.default.createElement(
+          "ul",
+          { className: "theList" },
+          _react2.default.createElement(
+            _reactFlipMove2.default,
+            { duration: 100, easing: "ease-out" },
+            listItems
+          )
+        )
       );
     }
   }]);
@@ -19294,96 +19329,10 @@ exports.default = TodoList;
 
 // read more about binding
 // add functionality to undo delete
+// can you combine TodoItems and TodoList? -> YES!
 
 /***/ }),
 /* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactFlipMove = __webpack_require__(40);
-
-var _reactFlipMove2 = _interopRequireDefault(_reactFlipMove);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TodoItems = function (_Component) {
-  _inherits(TodoItems, _Component);
-
-  function TodoItems(props) {
-    _classCallCheck(this, TodoItems);
-
-    var _this = _possibleConstructorReturn(this, (TodoItems.__proto__ || Object.getPrototypeOf(TodoItems)).call(this, props));
-
-    _this.createTasks = _this.createTasks.bind(_this);
-    return _this;
-  }
-
-  _createClass(TodoItems, [{
-    key: "createTasks",
-    value: function createTasks(item) {
-      var _this2 = this;
-
-      return _react2.default.createElement(
-        "li",
-        { onClick: function onClick() {
-            return _this2.delete(item.key);
-          },
-          key: item.key },
-        item.text
-      );
-    }
-  }, {
-    key: "delete",
-    value: function _delete(key) {
-      this.props.delete(key);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var todoEntries = this.props.entries;
-      var listItems = todoEntries.map(this.createTasks);
-
-      return _react2.default.createElement(
-        "ul",
-        { className: "theList" },
-        _react2.default.createElement(
-          _reactFlipMove2.default,
-          { duration: 75, easing: "ease-out" },
-          listItems
-        )
-      );
-    }
-  }]);
-
-  return TodoItems;
-}(_react.Component);
-
-;
-
-exports.default = TodoItems;
-
-// can you combine TodoItems and TodoList?
-
-/***/ }),
-/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20839,6 +20788,52 @@ var enhancedFlipMove = /* #__PURE__ */propConverter(FlipMove$1);
 /* harmony default export */ __webpack_exports__["default"] = (enhancedFlipMove);
 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*import React, { Component } from "react";
+import FlipMove from "react-flip-move";
+ 
+class TodoItems extends Component {
+  
+  constructor(props) {
+    super(props);
+ 
+    this.createTasks = this.createTasks.bind(this);
+  }
+  
+  createTasks(item) {
+    return <li onClick={() => this.delete(item.key)} 
+              key={item.key}>{item.text}</li>
+  }
+  
+  delete(key) {
+    this.props.delete(key);
+  }
+ 
+  render() {
+    var todoEntries = this.props.entries;
+    var listItems = todoEntries.map(this.createTasks);
+ 
+    return (
+      <div>
+      <ul className="theList">
+        <FlipMove duration={100} easing="ease-out">
+          {listItems}
+        </FlipMove>
+      </ul>
+        
+      </div>
+      
+    );
+  }
+};
+ 
+export default TodoItems;*/
+
 
 /***/ }),
 /* 41 */

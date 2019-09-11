@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import FlipMove from "react-flip-move";
 import TodoItems from "./TodoItems";
 import "../TodoList.css";
  
@@ -12,10 +13,11 @@ class TodoList extends Component {
     };
     
     this.addItem = this.addItem.bind(this);
+    this.createTasks = this.createTasks.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
   }
   
-  addItem(e) {
+  addItem(event) {
     if (this._inputElement.value !== "") {
     var newItem = {
       text: this._inputElement.value,
@@ -33,7 +35,12 @@ class TodoList extends Component {
    
     console.log(this.state.items);
      
-    e.preventDefault();
+    event.preventDefault();
+  }
+  
+  createTasks(item) {
+    return <li onClick={() => this.deleteItem(item.key)} 
+              key={item.key}>{item.text}</li>
   }
   
   deleteItem(key) {
@@ -46,18 +53,32 @@ class TodoList extends Component {
     });
   }
   
+  /*delete(key) {
+    this.props.delete(key);
+  }*/
+  
   render() {
+    
+    {/*var todoEntries = this.props.entries;*/}
+    var todoEntries = this.state.items;
+    var listItems = todoEntries.map(this.createTasks);
+    
     return (
       <div className="todoListMain">
         <div className="header">
           <form onSubmit={this.addItem}>
-            <input ref={(a) => this._inputElement = a} placeholder="enter task">
+            <input ref={(el) => this._inputElement = el} placeholder="enter task">
             </input>
             <button type="submit">add</button>
           </form>
         </div>
-        <TodoItems entries={this.state.items}
-          delete={this.deleteItem}/>
+        {/*<TodoItems entries={this.state.items}
+          delete={this.deleteItem}/>*/}
+        <ul className="theList">
+          <FlipMove duration={100} easing="ease-out">
+            {listItems}
+          </FlipMove>
+        </ul>
       </div>
     );
   }
@@ -67,3 +88,4 @@ export default TodoList;
 
 // read more about binding
 // add functionality to undo delete
+// can you combine TodoItems and TodoList? -> YES!

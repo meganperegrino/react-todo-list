@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+/*import React, { Component } from "react";
 import FlipMove from "react-flip-move";
  
 class TodoItems extends Component {
@@ -23,15 +23,19 @@ class TodoItems extends Component {
     var listItems = todoEntries.map(this.createTasks);
  
     return (
+      <div>
       <ul className="theList">
-        <FlipMove duration={75} easing="ease-out">
+        <FlipMove duration={100} easing="ease-out">
           {listItems}
         </FlipMove>
       </ul>
+        
+      </div>
+      
     );
   }
 };
  
-export default TodoItems;
+export default TodoItems;*/
 
-// can you combine TodoItems and TodoList?
+
