@@ -19197,11 +19197,7 @@ var _reactFlipMove = __webpack_require__(39);
 
 var _reactFlipMove2 = _interopRequireDefault(_reactFlipMove);
 
-var _TodoItems = __webpack_require__(40);
-
-var _TodoItems2 = _interopRequireDefault(_TodoItems);
-
-__webpack_require__(41);
+__webpack_require__(40);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20793,54 +20789,8 @@ var enhancedFlipMove = /* #__PURE__ */propConverter(FlipMove$1);
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/*import React, { Component } from "react";
-import FlipMove from "react-flip-move";
- 
-class TodoItems extends Component {
-  
-  constructor(props) {
-    super(props);
- 
-    this.createTasks = this.createTasks.bind(this);
-  }
-  
-  createTasks(item) {
-    return <li onClick={() => this.delete(item.key)} 
-              key={item.key}>{item.text}</li>
-  }
-  
-  delete(key) {
-    this.props.delete(key);
-  }
- 
-  render() {
-    var todoEntries = this.props.entries;
-    var listItems = todoEntries.map(this.createTasks);
- 
-    return (
-      <div>
-      <ul className="theList">
-        <FlipMove duration={100} easing="ease-out">
-          {listItems}
-        </FlipMove>
-      </ul>
-        
-      </div>
-      
-    );
-  }
-};
- 
-export default TodoItems;*/
 
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(42);
+var content = __webpack_require__(41);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -20886,7 +20836,7 @@ if(false) {
 }
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(18)(false);
