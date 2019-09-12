@@ -19197,11 +19197,7 @@ var _reactFlipMove = __webpack_require__(39);
 
 var _reactFlipMove2 = _interopRequireDefault(_reactFlipMove);
 
-var _TodoItems = __webpack_require__(40);
-
-var _TodoItems2 = _interopRequireDefault(_TodoItems);
-
-__webpack_require__(41);
+__webpack_require__(40);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19232,9 +19228,9 @@ var TodoList = function (_Component) {
   _createClass(TodoList, [{
     key: "addItem",
     value: function addItem(event) {
-      if (this._inputElement.value !== "") {
+      if (this.inputElement.value !== "") {
         var newItem = {
-          text: this._inputElement.value,
+          text: this.inputElement.value,
           key: Date.now()
         };
 
@@ -19244,7 +19240,7 @@ var TodoList = function (_Component) {
           };
         });
 
-        this._inputElement.value = "";
+        this.inputElement.value = "";
       }
 
       console.log(this.state.items);
@@ -19300,7 +19296,7 @@ var TodoList = function (_Component) {
             "form",
             { onSubmit: this.addItem },
             _react2.default.createElement("input", { ref: function ref(el) {
-                return _this3._inputElement = el;
+                return _this3.inputElement = el;
               }, placeholder: "enter task" }),
             _react2.default.createElement(
               "button",
@@ -19330,6 +19326,8 @@ exports.default = TodoList;
 // read more about binding
 // add functionality to undo delete
 // can you combine TodoItems and TodoList? -> YES!
+// add hover to show delete button (extra practice)
+// convert to shopping list
 
 /***/ }),
 /* 39 */
@@ -20793,54 +20791,8 @@ var enhancedFlipMove = /* #__PURE__ */propConverter(FlipMove$1);
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/*import React, { Component } from "react";
-import FlipMove from "react-flip-move";
- 
-class TodoItems extends Component {
-  
-  constructor(props) {
-    super(props);
- 
-    this.createTasks = this.createTasks.bind(this);
-  }
-  
-  createTasks(item) {
-    return <li onClick={() => this.delete(item.key)} 
-              key={item.key}>{item.text}</li>
-  }
-  
-  delete(key) {
-    this.props.delete(key);
-  }
- 
-  render() {
-    var todoEntries = this.props.entries;
-    var listItems = todoEntries.map(this.createTasks);
- 
-    return (
-      <div>
-      <ul className="theList">
-        <FlipMove duration={100} easing="ease-out">
-          {listItems}
-        </FlipMove>
-      </ul>
-        
-      </div>
-      
-    );
-  }
-};
- 
-export default TodoItems;*/
 
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(42);
+var content = __webpack_require__(41);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -20886,7 +20838,7 @@ if(false) {
 }
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(18)(false);

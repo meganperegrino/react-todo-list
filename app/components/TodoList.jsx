@@ -17,9 +17,9 @@ class TodoList extends Component {
   }
   
   addItem(event) {
-    if (this._inputElement.value !== "") {
+    if (this.inputElement.value !== "") {
     var newItem = {
-      text: this._inputElement.value,
+      text: this.inputElement.value,
       key: Date.now()
     };
  
@@ -29,7 +29,7 @@ class TodoList extends Component {
       };
     });
    
-    this._inputElement.value = "";
+    this.inputElement.value = "";
   }
    
     console.log(this.state.items);
@@ -66,7 +66,7 @@ class TodoList extends Component {
       <div className="todoListMain">
         <div className="header">
           <form onSubmit={this.addItem}>
-            <input ref={(el) => this._inputElement = el} placeholder="enter task">
+            <input ref={(el) => this.inputElement = el} placeholder="enter task">
             </input>
             <button type="submit">add</button>
           </form>
@@ -88,3 +88,5 @@ export default TodoList;
 // read more about binding
 // add functionality to undo delete
 // can you combine TodoItems and TodoList? -> YES!
+// add hover to show delete button (extra practice)
+// convert to shopping list
