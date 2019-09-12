@@ -19228,9 +19228,9 @@ var TodoList = function (_Component) {
   _createClass(TodoList, [{
     key: "addItem",
     value: function addItem(event) {
-      if (this._inputElement.value !== "") {
+      if (this.inputElement.value !== "") {
         var newItem = {
-          text: this._inputElement.value,
+          text: this.inputElement.value,
           key: Date.now()
         };
 
@@ -19240,7 +19240,7 @@ var TodoList = function (_Component) {
           };
         });
 
-        this._inputElement.value = "";
+        this.inputElement.value = "";
       }
 
       console.log(this.state.items);
@@ -19296,7 +19296,7 @@ var TodoList = function (_Component) {
             "form",
             { onSubmit: this.addItem },
             _react2.default.createElement("input", { ref: function ref(el) {
-                return _this3._inputElement = el;
+                return _this3.inputElement = el;
               }, placeholder: "enter task" }),
             _react2.default.createElement(
               "button",
@@ -19326,6 +19326,8 @@ exports.default = TodoList;
 // read more about binding
 // add functionality to undo delete
 // can you combine TodoItems and TodoList? -> YES!
+// add hover to show delete button (extra practice)
+// convert to shopping list
 
 /***/ }),
 /* 39 */
